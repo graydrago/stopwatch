@@ -4,7 +4,12 @@ export function prepareRoot(parent, id = "app") {
 
     let root = document.createElement("div");
     root.id = id;
-    parent.appendChild(root);
+
+    if (parent.firstChild) {
+        parent.insertBefore(root, parent.firstChild);
+    } else {
+        parent.appendChild(root);
+    }
 
     return root;
 }
@@ -19,4 +24,11 @@ export function assert(test, message = "") {
 
 export function assertNumber(value, prefix = "") {
     assert(typeof value === "number", `${prefix} must be a number"`);
+}
+
+
+export function div(className = "") {
+    let d = document.createElement("div");
+    d.classList.add(...(className.split(" ")));
+    return d;
 }

@@ -1,7 +1,5 @@
 "use strict";
-//const webpack = require("webpack");
 const path = require("path");
-const uglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -19,6 +17,24 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    },
+                    {
+                        loader: "sass-loader"
+                    }
+                ]
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
             }
         ]
     },
@@ -31,7 +47,6 @@ module.exports = {
     devtool: "#source-map",
 
     plugins: [
-        //new uglifyJSPlugin(),
         new htmlWebpackPlugin({
             title: "Application",
             filename: "index.html",

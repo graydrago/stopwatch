@@ -1,0 +1,29 @@
+.player {
+    &-control {
+        display: flex;
+        justify-content: center;
+
+        &-button {
+            width: 100px;
+            height: 40px;
+            border: 5px solid black;
+            border-radius: 10px;
+            text-align: center;
+            margin: 0 10px;
+            
+            path { fill: black; }
+
+            &.pushed {
+                border-color: darkgray;
+                path { fill: darkgray; }
+            }
+
+            &:not(.pushed):hover {
+                cursor: pointer;
+                border-color: darkblue;
+                path { fill: darkblue; }
+            }
+        }
+    }
+    
+}
